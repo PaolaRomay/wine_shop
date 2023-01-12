@@ -1,3 +1,4 @@
+import { Link, NavLink } from 'react-router-dom'
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
@@ -5,8 +6,10 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
-import nameBrand from '../assets/nameBrand.png'
-import CartWidget from './CartWidget';
+import nameBrand from '../../assets/nameBrand.png'
+import CartWidget from '../CartWidget/CartWidget';
+
+import './NavBar.css'
 
 function NavBar() {
   return (
@@ -14,7 +17,9 @@ function NavBar() {
       {['sm'].map((expand) => (
         <Navbar key={expand} bg="light" expand={expand} className="mb-3" fixed="top">
           <Container fluid>
-            <img variant="top" alt="" width='180px' src={nameBrand} />
+            <Link to="/">
+              <img variant="top" alt="" width='180px' src={nameBrand} />
+            </Link>
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
             <Navbar.Offcanvas
               id={`offcanvasNavbar-expand-${expand}`}
@@ -28,22 +33,17 @@ function NavBar() {
                     title="Categorias"
                     id={`offcanvasNavbarDropdown-expand-${expand}`}
                   >
-                    <NavDropdown.Item href="#action1">Vinos Uruguayos</NavDropdown.Item>
-                    <NavDropdown.Item href="#action2">Vinos Argentinos</NavDropdown.Item>
-                    <NavDropdown.Item href="#action3">Vinos Chilenos</NavDropdown.Item>
-                    <NavDropdown.Item href="#action4">Vinos Resto del Mundo</NavDropdown.Item>
+                    <NavLink className="nav-link" to="/categoria/vuruguayos">Vinos Uruguayos</NavLink>
+                    <NavLink className="nav-link" to="/categoria/vargentinos">Vinos Argentinos</NavLink>
+                    <NavLink className="nav-link" to="/categoria/vmundo">Vinos Resto del Mundo</NavLink>
                     <NavDropdown.Divider />
-                    <NavDropdown.Item href="#action5">Whisky Blended</NavDropdown.Item>
-                    <NavDropdown.Item href="#action6">Whisky Bourbon</NavDropdown.Item>
+                    <NavLink className="nav-link" to="/categoria/wblended">Whisky Blended</NavLink>
+                    <NavLink className="nav-link" to="/categoria/wbourbon">Whisky Bourbon</NavLink>
                     <NavDropdown.Divider />
-                    <NavDropdown.Item href="#action7">Cervezas Nacionales</NavDropdown.Item>
-                    <NavDropdown.Item href="#action8">Cervezas Importadas</NavDropdown.Item>
+                    <NavLink className="nav-link" to="/categoria/cnacionales">Cervezas Nacionaless</NavLink>
+                    <NavLink className="nav-link" to="/categoria/cimportadas">Cervezas Importadas</NavLink>
                     <NavDropdown.Divider />
-                    <NavDropdown.Item href="#action9">Licores</NavDropdown.Item>
-                    <NavDropdown.Item href="#action10">Gin</NavDropdown.Item>
-                    <NavDropdown.Item href="#action11">Ron</NavDropdown.Item>
-                    <NavDropdown.Item href="#action12">Tequila</NavDropdown.Item>
-                    <NavDropdown.Item href="#action13">Fernet</NavDropdown.Item>
+                    <NavLink className="nav-link" to="/categoria/licores">Licores</NavLink>
                   </NavDropdown>
                 </Nav>
                 <Form className="d-flex">
