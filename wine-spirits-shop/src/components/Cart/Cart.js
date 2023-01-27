@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 
 function Cart(){
 
-    const {cart, totalQuantity, removeItem, clear} = useContext(contexto)
+    const {cart, totalQuantity, total, removeItem, clear} = useContext(contexto)
     console.log(JSON.stringify(cart))
 
     const aux = totalQuantity < 1 ? true : false  
@@ -32,7 +32,7 @@ function Cart(){
                                 <h5>{prod.item.name}</h5>
                             </div>
                             <div className="col-3">
-                                <h5>{prod.item.price}</h5>
+                                <h5>${prod.item.precio}</h5>
                             </div>
                             <div className="col-1">
                                 <h5>{prod.quantity}</h5>
@@ -43,6 +43,7 @@ function Cart(){
                         </div>
                         )}
                         <h5 className="text-center mt-3">Cantidad total de productos: {totalQuantity}</h5>
+                        <h5 className="text-center mt-3">Total a pagar: ${total}</h5>
                        <div className="d-flex justify-content-center">
                             <button className="btn btn-danger bg-gradient" onClick={clear}>Vaciar Carrito</button>
                         </div>

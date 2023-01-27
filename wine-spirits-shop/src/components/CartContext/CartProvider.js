@@ -18,14 +18,16 @@ const CartProvider = ({children}) => {
             console.log(JSON.stringify(cart[itemIndex]))
             cart[itemIndex].quantity = cart[itemIndex].quantity +quantity
             item.stock = item.stock-quantity
+            setTotal(total + (item.precio * quantity))
         } else{
             const id = item.id
             console.log(id)
-            let auxCart = cart.concat({id, item, quantity})
-            setCart(auxCart)
+            const auxCart = [...cart]
+            setCart(auxCart.concat({id, item, quantity}))
             setTotal(total+ (item.price * quantity))
             setQuantity(totalQuantity+quantity)
             item.stock = item.stock-quantity
+            setTotal(total + (item.precio * quantity))
         }
     }
     //remueve item del carrito
@@ -33,6 +35,7 @@ const CartProvider = ({children}) => {
         const itemIndex = cart.findIndex(prod => prod.id === idProduct)
         setQuantity(totalQuantity-cart[itemIndex].quantity)
         cart[itemIndex].item.stock = cart[itemIndex].item.stock+cart[itemIndex].quantity
+        setTotal(total - (cart[itemIndex].item.precio * cart[itemIndex].quantity))
 
         const filterCart = cart.filter((item) => item.id !== idProduct)
         setCart(filterCart)
@@ -45,11 +48,12 @@ const CartProvider = ({children}) => {
     //remueve todos los items
     const clear = () => {  
         cart.map(prod => {
-            setQuantity(totalQuantity-prod.quantity)
             prod.item.stock = prod.item.stock+prod.quantity
         }
         )
         setCart([])
+        setQuantity(0)
+        setTotal(0)
     }
 
     const contextValue = {
