@@ -40,7 +40,7 @@ function NavBar() {
                     <NavLink className="nav-link" to="/categoria/wblended">Whisky Blended</NavLink>
                     <NavLink className="nav-link" to="/categoria/wbourbon">Whisky Bourbon</NavLink>
                     <NavDropdown.Divider />
-                    <NavLink className="nav-link" to="/categoria/cnacionales">Cervezas Nacionaless</NavLink>
+                    <NavLink className="nav-link" to="/categoria/cnacionales">Cervezas Nacionales</NavLink>
                     <NavLink className="nav-link" to="/categoria/cimportadas">Cervezas Importadas</NavLink>
                     <NavDropdown.Divider />
                     <NavLink className="nav-link" to="/categoria/licores">Licores</NavLink>

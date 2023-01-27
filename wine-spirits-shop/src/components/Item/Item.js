@@ -2,6 +2,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import {Link} from "react-router-dom";
 import './Item.css'
+import ItemDetail from '../ItemDetail/ItemDetail'
 
 function Item({prod}) {
   return (
@@ -13,10 +14,9 @@ function Item({prod}) {
         <div class="col-sm">
           <Card.Body>
             <Card.Title>{prod.name}</Card.Title>
-              <Button variant="primary" className='button'>${prod.precio}</Button>
-              <Link to={`/detalle/${prod.id}`}>
-                <Button variant="primary" className='button'>Ver Más</Button>
-              </Link>
+            <br></br>
+            <h4 className='btn'>${prod.precio}</h4>
+            <ItemDetail producto={prod}/>
           </Card.Body>
         </div>
       </div>
