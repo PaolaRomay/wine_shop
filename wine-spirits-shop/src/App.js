@@ -6,6 +6,8 @@ import ItemListContainer from './components/ItemListContainer/ItemListContainer'
 import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer';
 import Cart from './components/Cart/Cart';
 import CartProvider from './components/CartContext/CartProvider';
+import FormBuyer from './components/FormBuyer/FormBuyer';
+import Error404 from './Error404';
 
 function App() {
   return (
@@ -34,7 +36,15 @@ function App() {
 						path="/detalle/cart"
 						element={<Cart />}
 					/>
-						
+					<Route
+						exact 
+						path="/checkout"
+						element={<FormBuyer />}
+					/>
+					<Route
+						path="*"
+						element={<Error404 />}
+					/>
 				</Routes>
 			</div>
 		</BrowserRouter>

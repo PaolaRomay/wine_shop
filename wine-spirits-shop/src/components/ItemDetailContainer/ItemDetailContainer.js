@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react'
 import { useParams } from 'react-router-dom'
-import { getFetch } from '../../getFetch'
 import ItemDetail from '../ItemDetail/ItemDetail'
+import { doc, getDoc, getFirestore } from 'firebase/firestore'
 
 function ItemDetailContainer() {
 
@@ -9,9 +9,10 @@ function ItemDetailContainer() {
     const [producto, setProducto] = useState([])
 
     useEffect(() => {
-        getFetch
-        .then(resp => setProducto(resp.find(prod => prod.id === idProduct)))
-        .catch(err => console.error(err))
+        const db = getFirestore()
+        const queryDb = doc(db, 'products', idProduct )
+        getDoc(queryDb)
+        .then(resp => setProducto( { id: resp.id, ...resp.data() } ))
     }, [idProduct])
 
     return (

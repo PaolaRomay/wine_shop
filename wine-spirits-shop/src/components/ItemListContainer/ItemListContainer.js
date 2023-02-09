@@ -1,8 +1,8 @@
 import './ItemListContainer.css'
 import {useState, useEffect} from 'react'
 import { useParams } from 'react-router-dom'
-import {getFetch} from '../../getFetch'
 import ItemList from '../ItemList/ItemList'
+import { collection, getDocs, getFirestore, query, where } from 'firebase/firestore'
 
 
 const ItemListContainer = ({greeting}) => {
@@ -12,15 +12,16 @@ const ItemListContainer = ({greeting}) => {
     const { idCategory } = useParams();
 
     useEffect(() => {
+      const db = getFirestore();
       if (idCategory) {            
-        getFetch
-        .then(resp => setProductos(resp.filter(prod => prod.category === idCategory)))
-        .catch(err => console.error(err))
+        const queryCollectionCategory = query(collection(db, 'products'), where('category', '==', idCategory) )
+        getDocs(queryCollectionCategory)
+        .then(resp => setProductos( resp.docs.map(prod => ({ id: prod.id, ...prod.data()}))))
         .finally(() => setLoading(false))
     } else {
-        getFetch
-        .then(resp => setProductos(resp))
-        .catch(err => console.error(err))
+        const queryCollection = collection(db, 'products')
+        getDocs(queryCollection)
+        .then(resp => setProductos( resp.docs.map(prod => ({ id: prod.id, ...prod.data()}))))
         .finally(() => setLoading(false))
     }
 }, [idCategory])

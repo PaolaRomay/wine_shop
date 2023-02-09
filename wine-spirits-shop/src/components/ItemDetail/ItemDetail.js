@@ -15,9 +15,8 @@ function ItemDetail({producto}) {
 
 
   const[goToCarrito, setGoToCarrito] = useState(false) //controla si esta confirmado
-  //Agrega al carrito y muestra por consola la cantidad que se añadio
+  //Agrega al carrito 
   const onAdd = (cantidad) => {
-    console.log("Agregaste " + cantidad + " al carrito!")
     setGoToCarrito(true)
     addItem(producto, cantidad)
   }
@@ -53,7 +52,7 @@ function ItemDetail({producto}) {
           <ItemCount inicial={1} max={producto.stock} onAdd={onAdd} /> 
           : 
           <div className="d-flex justify-content-center">
-            <Link to={`/detalle/cart`}> 
+            <Link to={"/detalle/cart"}> 
               <button className="btn btn-primary bg-gradient mt-3">Terminar mi compra</button>
             </Link>
           </div>
@@ -65,8 +64,3 @@ function ItemDetail({producto}) {
 }
 
 export default ItemDetail;
-/** 
- * <Link to={`/cart`}> 
-      <Button variant="primary" onClick={handleClose}>Comprar</Button>
-  </Link>
-*/

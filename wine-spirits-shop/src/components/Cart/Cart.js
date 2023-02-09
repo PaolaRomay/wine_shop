@@ -22,7 +22,27 @@ function Cart(){
             ) : (
             <div>
                 <div className="container">
-                    <div className="row justify-content-center">
+                    <div className="row mt-4 justify-content-center text-center">
+                        <div className="row">
+                            <div className="col-3">
+                            </div>
+                            <div className="col-3">
+                                <h5>Nombre:</h5>
+                            </div>
+                            <div className="col-2">
+                                <h5>Precio:</h5>
+                            </div>
+                            <div className="col-1">
+                                <h5>Cantidad:</h5>
+                            </div>
+                            <div className="col-2">
+                                <h5>Total:</h5>
+                            </div>
+                            <div className="col-1">
+                            </div>
+                        </div>
+                    </div>
+                    <div className="row justify-content-center text-center">
                         {cart.map(prod => 
                         <div className="row" key={prod.id}>
                             <div className="col-3">
@@ -31,13 +51,16 @@ function Cart(){
                             <div className="col-3">
                                 <h5>{prod.item.name}</h5>
                             </div>
-                            <div className="col-3">
+                            <div className="col-2">
                                 <h5>${prod.item.precio}</h5>
                             </div>
                             <div className="col-1">
                                 <h5>{prod.quantity}</h5>
                             </div>
                             <div className="col-2">
+                                <h5>${prod.quantity * prod.item.precio}</h5>
+                            </div>
+                            <div className="col-1">
                                 <button className="btn btn-danger bg-gradient" onClick={()=> removeItem(prod.item.id)} >Eliminar</button>
                             </div>
                         </div>
@@ -46,6 +69,9 @@ function Cart(){
                         <h5 className="text-center mt-3">Total a pagar: ${total}</h5>
                        <div className="d-flex justify-content-center">
                             <button className="btn btn-danger bg-gradient" onClick={clear}>Vaciar Carrito</button>
+                            <Link to="/checkout">
+                                <button className="btn btn-danger bg-gradient ms-3">Procesar Compra</button>
+                            </Link>
                         </div>
                     </div>
                 </div>
